@@ -4,7 +4,7 @@
       "browserName": "app",
       "app": "C:\\Appium\\peerconnection\\av1\\peerconnection_client.exe",
       "appWorkingDir": "C:\\Appium\\peerconnection\\av1",
-      "appArguments": "--scalability_mode=L3T3  --server=sgmedooze.cosmosoftware.io --autoconnect=true  --force_fieldtrials=WebRTC-DependencyDescriptorAdvertised/Enabled/",
+      "appArguments": "--scalability_mode=L3T3  --server=sgmedooze.cosmosoftware.io --force_fieldtrials=WebRTC-DependencyDescriptorAdvertised/Enabled/",
       "deviceName": "WINDOWS",
       "maxInstances": 1,
       "platform": "WINDOWS"
