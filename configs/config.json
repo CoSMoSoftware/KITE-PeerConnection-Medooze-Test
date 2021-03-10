@@ -1,0 +1,53 @@
+{
+  "name": "Peer connection Loopback WebRTC Test",
+  "grids": [
+    {
+      "type": "local",
+      "url": "http://192.168.3.25:4444/wd/hub"
+    }
+  ],
+  "matrix": [[0,1]],
+  "tests": [
+    {
+      "name": "Peer connection Loopback WebRTC Test",
+      "description": "Peer connection Loopback WebRTC Test",
+      "tupleSize": 2,
+      "callbackUrl": "kdash.av1.cosmosoftware.io",
+      "callbackPort": 2221,
+      "callbackUsername" : "cosmouser",
+      "callbackPassword": "CSmu1;'_",
+      "testImpl": "io.cosmosoftware.kite.peerconnection.tests.PeerConnectionTest",
+      "payload": {
+        "url": "https://sgmedooze.cosmosoftware.io/av1svc/",
+        "layers": ["Layer S0 T0", "Layer S0 T1", "Layer S0 T2", "Layer S1 T0", "Layer S1 T1",
+        "Layer S1 T2", "Layer S2 T0", "Layer S2 T1", "Layer S2 T2"],
+        "getStats" : {
+          "enabled": true,
+          "statsCollectionTime": 2,
+          "statsCollectionInterval": 1,
+          "peerConnections": [
+          ],
+          "selectedStats" : ["inbound-rtp", "outbound-rtp", "track", "codec"]
+        }
+      }
+    }
+  ],
+  "clients": [
+    {
+      "browserName": "app",
+      "platform": "WINDOWS",
+      "deviceName": "WINDOWS",
+      "app": {
+        "appName": "C:\\Appium\\peerconnection\\av1\\peerconnection_client2.exe",
+        "appWorkingDir": "C:\\Appium\\peerconnection\\av1"
+      },
+      "extraCapabilities": {
+        "appArguments": "--scalability_mode=L3T3  --server=sgmedooze.cosmosoftware.io --force_fieldtrials=WebRTC-DependencyDescriptorAdvertised/Enabled/"
+      }
+    },
+    {
+      "browserName": "chrome",
+      "platform": "WINDOWS"
+    }
+  ]
+}

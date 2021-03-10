@@ -14,7 +14,6 @@ public class JoinRoomStep extends TestStep {
 
     private final Coordinator coordinator;
     private final MainPage mainPage;
-
     /**
      * Instantiates a new Test step.
      *
@@ -29,6 +28,8 @@ public class JoinRoomStep extends TestStep {
     @Override
     protected void step() throws KiteTestException {
         waitAround(THREE_SECOND_INTERVAL);
+        mainPage.connectServer();
+        waitAround(ONE_SECOND_INTERVAL);
         this.coordinator.setRoomId(mainPage.getRoomId());
         waitAround(ONE_SECOND_INTERVAL);
         mainPage.joinRoom();

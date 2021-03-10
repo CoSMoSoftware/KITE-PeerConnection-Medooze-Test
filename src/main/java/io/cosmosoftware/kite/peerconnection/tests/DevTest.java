@@ -12,9 +12,9 @@ import org.webrtc.kite.config.paas.Paas;
 public class DevTest {
 
     public static void main(String[] args) throws MalformedURLException, KiteTestException {
-        Client client = new Client(readJsonFile("\\GitHub\\KITE-PeerConnection-Medooze-Test\\configs\\dev.config.json")
-                .getJsonArray("clients").getJsonObject(0));
-        client.setPaas(new Paas("http://192.168.1.133:4444/wd/hub"));
+        Client client = new Client(readJsonFile("\\GitHub\\KITE-PeerConnection-Medooze-Test\\configs\\config.json")
+                .getJsonArray("clients").getJsonObject(1));
+        client.setPaas(new Paas("http://192.168.3.25:4444/wd/hub"));
         WebDriver driver = WebDriverFactory.createWebDriver(client, "", "");
         System.out.println("Created");
         driver.quit();

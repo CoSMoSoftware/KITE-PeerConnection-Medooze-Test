@@ -13,6 +13,8 @@ public class Coordinator {
     private String roomId = "none";
     private HashMap<Runner, String> participantMap = new HashMap<>();
     private List<String> participants = new ArrayList<>();
+    private List<String> layers = new ArrayList<>();
+    private List<String> screenshots = new ArrayList<>();
 
     public Coordinator(int participantCount) {
         this.participantCount = participantCount;
@@ -41,4 +43,19 @@ public class Coordinator {
         this.participants.remove(id);
     }
 
+    public synchronized void addLayer(String layer) {
+        this.layers.add(layer);
+    }
+
+    public synchronized void addScreenshot(String layer) {
+        this.screenshots.add(layer);
+    }
+
+    public boolean hasScreenshotTaken(String layer) {
+        return this.screenshots.contains(layer);
+    }
+
+    public boolean hasChangedToLayer(String layer) {
+        return this.layers.contains(layer);
+    }
 }

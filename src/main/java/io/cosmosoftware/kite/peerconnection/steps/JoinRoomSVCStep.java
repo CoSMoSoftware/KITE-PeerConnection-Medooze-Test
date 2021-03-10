@@ -15,20 +15,23 @@ public class JoinRoomSVCStep extends TestStep {
 
     private final Coordinator coordinator;
     private final SVCPage SVCPage;
+    private final String url;
 
     /**
      * Instantiates a new Test step.
      *
      * @param runner the runner
      */
-    public JoinRoomSVCStep(Runner runner, Coordinator coordinator) {
+    public JoinRoomSVCStep(Runner runner, Coordinator coordinator, String url) {
         super(runner);
         SVCPage = new SVCPage(runner);
         this.coordinator = coordinator;
+        this.url = url;
     }
 
     @Override
     protected void step() throws KiteTestException {
+        this.webDriver.get(url);
         for (int elapsed = 0; elapsed < DEFAULT_TIMEOUT; elapsed += ONE_SECOND_INTERVAL) {
             if (!coordinator.getRoomId().equals("none")) {
                 SVCPage.joinRoom(this.coordinator.getRoomId());

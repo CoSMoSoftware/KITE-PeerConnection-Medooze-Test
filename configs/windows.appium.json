@@ -1,0 +1,26 @@
+{
+  "capabilities": [
+    {
+      "browserName": "app",
+      "app": "C:\\Appium\\peerconnection\\av1\\peerconnection_client.exe",
+      "appWorkingDir": "C:\\Appium\\peerconnection\\av1",
+      "appArguments": "--scalability_mode=L3T3  --server=sgmedooze.cosmosoftware.io --autoconnect=true  --force_fieldtrials=WebRTC-DependencyDescriptorAdvertised/Enabled/",
+      "deviceName": "WINDOWS",
+      "maxInstances": 1,
+      "platform": "WINDOWS"
+    }
+  ],
+  "configuration": {
+    "cleanUpCycle": 2000,
+    "timeout": 60000,
+    "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+    "url": "http://192.168.1.133:4444/wd/hub",
+    "maxSession": 1,
+    "port": "4728",
+    "host": "192.168.1.133",
+    "register": true,
+    "registerCycle": 5000,
+    "hubPort": "4444",
+    "hubHost": "192.168.1.133"
+  }
+}

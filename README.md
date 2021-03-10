@@ -24,19 +24,19 @@ The test itself is a ensemble of __steps__ and __checks__, assigned to each part
 their role. These steps are synchronized between participants either by another object or by a
 transitioning steps.
 
-Step | Client 1 | Client 2 |
+Step | Client | Browser |
 ------------- |------------- | ------------- 
-1 | Connect client with __ConnectClientStep__ | Connect client with __ConnectClientStep__
-2 | Join room with __JoinRoomStep__ | Join room with __JoinRoomStep__
-3 | Verify own media with __LocalVideoDisplayCheck__ | Verify own media with __LocalVideoDisplayCheck__
-4 | Wait until everyone left with __ParticipantLeftCheck__ | Quit application with __QuitApplicationStep__
+1 | Connect client with __JoinRoomStep__ | Connect browser with __JoinRoomSVCStep__
+2 | Wait layer to be changed with __WaiForLayerToChangeStep__ | Change layer with __ChangerLayerStep__
+3 | Verify own media with __LocalVideoDisplayCheck__ | Wait for media to be checked with __WaitForScreenshotStep__
+4 | Repeat 2 & 3 for every layer | Repeat 2 & 3 for every layer
 5 | Quit application with __QuitApplicationStep__ |
 
 
 ## Understand the test config file
  
  To run this test, you will need to have a config file that the KITE Engine will understands.
- A sample config file is provided at  `configs/dev.config.json`  
+ A sample config file is provided at  `configs/config.json`  
 
 ### Important parameters 
 
@@ -58,14 +58,21 @@ Set your app directory according to where your binary is.
 ```
 "clients": [
     {
-          "browserName": "app",
-          "platform": "WINDOWS",
-          "deviceName": "WINDOWS",
-          "app": {
-            "appName": "C:\\Appium\\peerconnection\\peerconnection_client.exe",
-            "appWorkingDir": "C:\\Appium\\peerconnection\\"
-          }
-    }
+         "browserName": "app",
+         "platform": "WINDOWS",
+         "deviceName": "WINDOWS",
+         "app": {
+           "appName": "C:\\Appium\\peerconnection\\av1\\peerconnection_client.exe",
+           "appWorkingDir": "C:\\Appium\\peerconnection\\av1"
+         },
+         "extraCapabilities": {
+           "appArguments": "--scalability_mode=L3T3  --server=sgmedooze.cosmosoftware.io --force_fieldtrials=WebRTC-DependencyDescriptorAdvertised/Enabled/"
+         }
+       },
+       {
+         "browserName": "chrome",
+         "platform": "WINDOWS"
+       }
   ]
 ```
 #### Tests
@@ -90,9 +97,11 @@ This is the part which let the Engine know about the test. Most of the parameter
 This is the object that contains additional data that we can use during the test. This object will
 be process by the function `payloadHandling()` of the test. Here we will pass some parameters:
 
-__url__ (The ip address of the peer connection server)
+____ Launch arguments (The medooze server address and the scalability mode)
 ```
-  "url": "192.168.1.133"
+   "extraCapabilities": {
+      "appArguments": "--scalability_mode=L3T3  --server=sgmedooze.cosmosoftware.io --autoconnect=true  --force_fieldtrials=WebRTC-DependencyDescriptorAdvertised/Enabled/"
+    }
 ```
 
 ## Compiling and Running
